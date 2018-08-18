@@ -1,0 +1,3 @@
+{% for data in datas %}
+    <p> {{ data.title }} </p>
+{% endfor %}

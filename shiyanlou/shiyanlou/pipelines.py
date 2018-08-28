@@ -11,8 +11,12 @@ from shiyanlou.models import Repository, engine
 
 class ShiyanlouPipeline(object):
     def process_item(self, item, spider):
-        item['update_time'] = datetime.strptime(item['update_time'].split(), '%Y-%m-%d').date()
-        self.session.add(**item)
+
+        item['update_time'] = datetime.strptime(
+                item['update_time'], '%Y-%m-%dT%H:%M:%SZ')
+        print('----------------------',item['update_time'])
+        print('----------------------',type(item['update_time']))
+        self.session.add(Repository(**item))
        
         return item
 
